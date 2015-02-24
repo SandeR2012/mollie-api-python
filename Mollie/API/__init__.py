@@ -1,4 +1,4 @@
 from .Object import *
 from .Resource import *
-from .Error import Error
-from .Client import Client
+from .Error import *
+from .Client import *
