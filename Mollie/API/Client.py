@@ -6,7 +6,7 @@ import pkg_resources
 
 import requests
 
-from . import Resource
+from Mollie.API import Resource
 from .Error import *
 
 
