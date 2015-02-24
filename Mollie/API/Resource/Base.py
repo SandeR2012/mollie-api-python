@@ -1,16 +1,23 @@
-from Mollie.API.Client import *
 from Mollie.API.Error import *
 from Mollie.API.Object import *
 
 import json
 
 
+CLIENT_VERSION = '1.0.0'
+HTTP_GET = 'GET'
+HTTP_POST = 'POST'
+HTTP_DELETE = 'DELETE'
+API_ENDPOINT = 'https://api.mollie.nl'
+API_VERSION = 'v1'
+
+
 class Base(object):
-    REST_CREATE = Client.HTTP_POST
-    REST_UPDATE = Client.HTTP_POST
-    REST_READ = Client.HTTP_GET
-    REST_LIST = Client.HTTP_GET
-    REST_DELETE = Client.HTTP_DELETE
+    REST_CREATE = HTTP_POST
+    REST_UPDATE = HTTP_POST
+    REST_READ = HTTP_GET
+    REST_LIST = HTTP_GET
+    REST_DELETE = HTTP_DELETE
     DEFAULT_LIMIT = 10
 
     def __init__(self, client):
@@ -50,7 +57,7 @@ class Base(object):
         try:
             data = json.dumps(data)
         except Exception as e:
-            raise Error('Error encoding parameters into JSON: "%s"' % e.message)
+            raise Error('Error encoding parameters into JSON: "%s"' % str(e))
         return self.rest_create(data)
 
     def get(self, resource_id):
@@ -60,7 +67,7 @@ class Base(object):
         try:
             data = json.dumps(data)
         except Exception as e:
-            raise Error('Error encoding parameters into JSON: "%s"' % e.message)
+            raise Error('Error encoding parameters into JSON: "%s"' % str(e))
         return self.rest_update(resource_id, data)
 
     def delete(self, resource_id):

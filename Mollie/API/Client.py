@@ -6,17 +6,17 @@ import pkg_resources
 
 import requests
 
-from Mollie.API import Resource
-from .Error import *
+from . import Resource
+from .Error import Error
 
 
 class Client:
-    CLIENT_VERSION = '1.0.0'
-    HTTP_GET = 'GET'
-    HTTP_POST = 'POST'
-    HTTP_DELETE = 'DELETE'
-    API_ENDPOINT = 'https://api.mollie.nl'
-    API_VERSION = 'v1'
+    CLIENT_VERSION = Resource.CLIENT_VERSION
+    HTTP_GET = Resource.HTTP_GET
+    HTTP_POST = Resource.HTTP_POST
+    HTTP_DELETE = Resource.HTTP_DELETE
+    API_ENDPOINT = Resource.API_ENDPOINT
+    API_VERSION = Resource.API_VERSION
 
     def __init__(self):
         self.api_endpoint = self.API_ENDPOINT
@@ -72,5 +72,5 @@ class Client:
                 data=data
             )
         except Exception as e:
-            raise Error('Unable to communicate with Mollie: %s.' % e.message)
+            raise Error('Unable to communicate with Mollie: %s.' % str(e))
         return response
