@@ -6,7 +6,7 @@ import pkg_resources
 
 import requests
 
-import Resource
+from . import Resource
 from .Error import *
 
 
