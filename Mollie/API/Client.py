@@ -57,7 +57,6 @@ class Client:
             raise Error('You have not set an API key. Please use setApiKey() to set the API key.')
         url = self.api_endpoint + '/' + self.api_version + '/' + path
         user_agent = ' '.join(self.version_strings)
-        uname = ' '.join(os.uname())
         try:
             response = requests.request(
                 http_method, url,
@@ -66,7 +65,6 @@ class Client:
                     'Accept': 'application/json',
                     'Authorization': 'Bearer ' + self.api_key,
                     'User-Agent': user_agent,
-                    'X-Mollie-Client-Info': uname
                 },
                 params=params,
                 data=data
